@@ -1,19 +1,48 @@
-import pokedataMock from "./mock"
-import { IPokedata } from "./types"
+import pokedataMock from "./mock";
+import { IDraggablePokemon, IPokedata } from "./types";
 
-const response = pokedataMock
+const response = pokedataMock;
 
 export const getPokeData = async (pokemon: string) => {
-    // return {
-    //     sprite: response.sprites.front_default
-    // }
-    return fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`).then((res) => {
-        return res.json().then((data) => {
-            console.log(data)
-            const pokedata: IPokedata = {
-                sprite: data.sprites.front_default
-            }
-            return pokedata
-        })
-    })
-}
+  return {
+    sprite: response.sprites.front_default,
+  };
+  // return fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`).then((res) => {
+  //     return res.json().then((data) => {
+  //         console.log(data)
+  //         const pokedata: IPokedata = {
+  //             sprite: data.sprites.front_default
+  //         }
+  //         return pokedata
+  //     })
+  // })
+};
+
+export const reorder = (
+  list: IDraggablePokemon[],
+  startIndex: number,
+  endIndex: number
+) => {
+  const result = [...list];
+  const [removed] = result.splice(startIndex, 1);
+  1;
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+
+export const remove = (list: IDraggablePokemon[], index: number) => {
+  const result = [...list];
+  result.splice(index, 1);
+  return result;
+};
+
+export const appendAt = (
+  list: IDraggablePokemon[],
+  index: number,
+  pokemon: IDraggablePokemon
+) => {
+  const result = [...list];
+  result.splice(index, 0, pokemon);
+  return result;
+};
