@@ -63,16 +63,19 @@ export default function PokemonDragNDrop({ intialPokedex }: IPokemonDragNDrop) {
       <div
         style={{
           borderBottom: "2px solid",
+          marginBottom: "2%",
           width: "90%",
         }}
       />
       <DragDropContext onDragEnd={handleDragEnd}>
-        <Box pad="large" direction="row" gap="xlarge">
-          <DroppableContainer header="Party" pokemon={pokedex.party || []} />
-          <DroppableContainer
-            header="Storage"
-            pokemon={pokedex.storage || []}
-          />
+        <Box align="center">
+          <Box pad="large" direction="row" gap="xlarge">
+            <DroppableContainer header="Party" pokemon={pokedex.party || []} />
+            <DroppableContainer
+              header="Storage"
+              pokemon={pokedex.storage || []}
+            />
+          </Box>
         </Box>
       </DragDropContext>
     </Main>
