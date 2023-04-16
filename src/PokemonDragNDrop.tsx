@@ -11,6 +11,7 @@ interface IPokemonDragNDrop {
 export default function PokemonDragNDrop({ intialPokedex }: IPokemonDragNDrop) {
   const [pokedex, setPokedex] = React.useState(intialPokedex);
 
+  // Handle when the user drops an 'Droppable' component
   function handleDragEnd(result: DropResult) {
     const src = result.source;
     const dest = result.destination;
@@ -37,7 +38,11 @@ export default function PokemonDragNDrop({ intialPokedex }: IPokemonDragNDrop) {
     } else {
       // --- DIFFERENT CONTAINER ---
       // Otherwise, we need to handle source and destination
+
+      // Remove from the source list
       const srcItems = remove(pokedex[src.droppableId], src.index);
+      
+      // Add to the new list
       const destItems = appendAt(
         pokedex[dest.droppableId],
         dest.index,
@@ -48,7 +53,6 @@ export default function PokemonDragNDrop({ intialPokedex }: IPokemonDragNDrop) {
       const tempPokedex = { ...pokedex };
       tempPokedex[src.droppableId] = srcItems;
       tempPokedex[dest.droppableId] = destItems;
-
       setPokedex({ ...tempPokedex });
     }
   }

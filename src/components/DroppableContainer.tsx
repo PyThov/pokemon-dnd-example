@@ -27,7 +27,7 @@ export default function DroppableContainer({ header, pokemon }: IContainer) {
             droppableId={header.toLowerCase()}
             type={"POKEMON"}
           >
-            {(provided, snapshot) => (
+            {(provided) => (
               <div ref={provided.innerRef} {...provided.droppableProps}>
                 <CardBody
                   style={{
@@ -37,7 +37,7 @@ export default function DroppableContainer({ header, pokemon }: IContainer) {
                 >
                   {pokemon.map((mon, index) => (
                     <Draggable key={mon.id} draggableId={mon.id} index={index}>
-                      {(provided, snapshot) => (
+                      {(provided) => (
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}

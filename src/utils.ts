@@ -1,7 +1,4 @@
-import pokedataMock from "./mock";
-import { IDraggablePokemon, IPokedata } from "./types";
-
-const response = pokedataMock;
+import { IDraggablePokemon } from "./types";
 
 export const capitalizeFirstLetter = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
