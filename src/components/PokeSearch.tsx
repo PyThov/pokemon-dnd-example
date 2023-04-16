@@ -16,27 +16,32 @@ export default function PokeSearch() {
 
   const shouldShow = focus && result;
 
-  const search = useCallback(debounce(
-    (term) => {
-      console.log("search!", term);
-      getPokeData(term).then((res) => {
-        if (res) {
-          setResult(res)
-        } else {
-          setResult(undefined)
-        }
-      }).catch((e) => {
-        console.log(e)
-        setResult(undefined)
-      });
-    },
-    500,
-    { leading: false, trailing: true }
-  ), []);
+  const search = useCallback(
+    debounce(
+      (term) => {
+        console.log("search!", term);
+        getPokeData(term)
+          .then((res) => {
+            if (res) {
+              setResult(res);
+            } else {
+              setResult(undefined);
+            }
+          })
+          .catch((e) => {
+            console.log(e);
+            setResult(undefined);
+          });
+      },
+      500,
+      { leading: false, trailing: true }
+    ),
+    []
+  );
 
   useEffect(() => {
     if (value.length > 0) {
-      search(value)
+      search(value);
     } else {
       setResult(undefined);
     }
@@ -58,10 +63,7 @@ export default function PokeSearch() {
       </Card>
       <Box>
         {result && (
-          <Card
-            background="#eee"
-            style={{ position: "absolute", top: "100%" }}
-          >
+          <Card background="#eee" style={{ position: "absolute", top: "100%" }}>
             {JSON.stringify(result)}
           </Card>
         )}
